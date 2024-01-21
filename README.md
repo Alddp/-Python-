@@ -583,6 +583,183 @@ for magician in magicians:
 
 ### 4.2　避免缩进错误
 
+### 4.3　创建数值列表
+
+#### 4.3.1　使用函数`range()`
+
+> #### `range`函数包含第一个值，不包含第二个值，存在差一动作，特别注意
+`range(n1,n2,n3)`，前两个参数所描述的区间是前闭后开的，第三个参数是步长，默认为1。
+
+#### 4.3.2 使用`range()`创建数字列表
+
+>  要创建数字列表，可使用函数`list()`将`range()`的结果直接转换为列表。
+>
+> 如果将`range()`作为`list()`的参数，输出将为一个数字列表。
+
+```python
+numbers = list(range(1, 6))
+print(numbers)
+```
+
+
+
+使用函数`range()`几乎能够创建任何需要的数字集，例如，如何创建一个列表，其中包含前10个整数（即1～10）的平方呢？在Python中，两个星号`**`表示乘方运算。下面的代码演示了如何将前10个整数的平方加入到一个列表中：
+
+```python
+squares = []
+for value in range(1, 11):  # 通过for循环遍历列表
+    square = value ** 2
+    squares.append(square)  # 在列表后追加其平方值
+print(squares)
+```
+
+ 简化代码
+
+```python
+squares = []
+for value in range(1, 11):
+    squares.append(value ** 2)
+print(squares)
+```
+
+
+
+#### 4.3.3　对数字列表执行简单的统计计算
+
+有几个专门用于处理数字列表的Python函数。例如，你可以轻松地找出数字列表的最大值、最小值和总和：
+
+| 函数    | 功能   |
+| ------- | ------ |
+| `mix()` | 最大值 |
+| `min()` | 最小值 |
+| `sum()` | 和     |
+
+```python
+digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+print(min(digits))
+print(max(digits))
+print(sum(digits))
+```
+
+```
+结果：
+0
+9
+45
+```
+
+
+
+#### 4.3.4　**列表解析
+
+前面介绍的生成列表squares的方式包含三四行代码，而列表解析让你只需编写一行代码就能生成这样的列表。列表解析将for循环和创建新元素的代码合并成一行，并自动附加新元素。面向初学者的书籍并非都会介绍列表解析，这里之所以介绍列表解析，是因为等你开始阅读他人编写的代码时，很可能会遇到它们。
+
+下面的示例使用列表解析创建你在前面看到的平方数列表：
+
+```python
+squares = [value ** 2 for value in range(1, 11)]
+print(squares)
+```
+
+```python
+#  原代码
+squares = []
+for value in range(1, 11):
+    squares.append(value ** 2)
+print(squares)
+```
+
+##### 动手试一试
+
+- [ ] 4-3 数到20：使用一个for循环打印数字1～20（含）。
+
+  ```python
+  for i in range(1, 21):
+      print(i)
+  ```
+
+- [ ] 4-4 一百万：创建一个列表，其中包含数字1～10000，再使用一个for循环将这些数字打印出来（如果输出的时间太长，按Ctrl+C停止输出，或关闭输出窗口）。
+
+  ```python
+  arr = list(range(1, 100001))
+  for i in arr:
+      print(i)
+  ```
+
+- [ ] 4-5 计算1～1000000的总和：创建一个列表，其中包含数字1～1000000，再使用min()和max()核实该列表确实是从1开始，到1000000结束的。另外，对这个列表调用函数`sum()`，看看Python将一百万个数字相加需要多长时间。
+
+  ```python
+  arr = list(range(1, 1000001))
+  print(min(arr))
+  print(max(arr))
+  print(sum(arr))
+  ```
+
+- [ ] 4-6 奇数：通过给函数`range()`指定第三个参数来创建一个列表，其中包含1～20的奇数；再使用一个for循环将这些数字都打印出来。
+
+  ```python
+  arr = list(range(1, 21, 2))
+  for i in arr:
+      print(i)
+  ```
+
+- [ ] 4-7 3的倍数：创建一个列表，其中包含3～30内能被3整除的数字；再使用一个for循环将这个列表中的数字都打印出来。
+
+  ```python
+  arr = list(range(3, 31, 3))
+  for arr in arr:
+      print(arr)
+  ```
+
+- [ ] 4-8 立方：将同一个数字乘三次称为立方。例如，在Python中，2的立方用2**3表示。请创建一个列表，其中包含前10个整数（即1～10）的立方，再使用一个for循环将这些立方数都打印出来。
+
+  ```python
+  arr = []
+  for i in range(1, 11):
+      arr.append(i ** 3)
+  for i in arr:
+      print(i)
+  ```
+
+- [ ] 4-9 立方解析：使用列表解析生成一个列表，其中包含前10个整数的立方。
+
+  ```python
+  cube = [j ** 3 for j in range(1, 11)]
+  print(cube)
+  ```
+
+### 4.4　使用列表的一部分
+
+> *处理列表的部分元素——Python称之为切片。*
+
+#### 4.4.1　切片
+
+要创建切片，可指定要使用的第一个元素和最后一个元素的索引。与函数range()一样，Python在到达你指定的第二个索引前面的元素后停止。要输出列表中的前三个元素，需要指定索引0～3，这将输出分别为0、1和2的元素。
+下面的示例处理的是一个运动队成员列表：
+
+```python
+players = ['charles', 'martina', 'michael', 'florence', 'eli']
+print(players[0:3])
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
