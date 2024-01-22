@@ -742,17 +742,486 @@ players = ['charles', 'martina', 'michael', 'florence', 'eli']
 print(players[0:3])
 ```
 
+结果：
+
+```
+['charles', 'martina', 'michael', 'florence', 'eli']
+['charles', 'martina', 'michael']
+```
 
 
 
+#### 4.4.2　遍历切片
+
+```python
+players = ['charles', 'martina', 'michael', 'florence', 'eli']
+print("Here are the first three players on my team:")
+
+for player in players[:3]:  # 先且切片，在切片后的列表中遍历
+    print(player.title())
+```
+
+> 在很多情况下，切片都很有用。例如，编写游戏时，你可以在玩家退出游戏时将其最终得分加入到一个列表中。然后，为获取该玩家的三个最高得分，你可以将该列表按降序排列，再创建一个只包含前三个得分的切片。处理数据时，可使用切片来进行批量处理；编写Web应用程序时，可使用切片来分页显示信息，并在每页显示数量合适的信息。
+
+#### 4.4.3　复制列表
+
+例如，假设有一个列表，其中包含你最喜欢的三种食品，而你还想创建另一个列表，在其中包含一位朋友喜欢的所有食品。不过，你喜欢的食品，这位朋友都喜欢，因此你可以通过复制来创建这个列表：
+
+```python
+my_foods = ['pizza', 'falafel', 'carrot cake']
+friend_foods = my_foods[:]  # 类似切片方法
+print("My favorite foods are:")
+print(my_foods)
+print("\nMy friend's favorite foods are:")
+print(friend_foods)
+```
+
+> 下面将`my_foods`赋给`friend_foods`，而不是将my_foods的副本存储到`friend_foods`。**这种语法实际上是让Python将新变量`friend_foods`关联到包含在`my_foods`中的列表，因此这两个变量都指向同一个列表。**鉴于此，当我们将'`cannoli`'添加到`my_foods`中时，它也将出现在`friend_foods`中；同样，虽然'`ice cream`'好像只被加入到了`friend_foods`中，但它也将出现在这两个列表中。
+
+> ```python
+> my_foods = ['pizza', 'falafel', 'carrot cake']
+> # 这行不通
+> friend_foods = my_foods
+> my_foods.append('cannoli')
+> friend_foods.append('ice cream')
+> print("My favorite foods are:")
+> print(my_foods)
+> print("\nMy friend's favorite foods are:")
+> print(friend_foods)
+> ```
+>
+> ```
+> 结果:
+> My favorite foods are:
+> ['pizza', 'falafel', 'carrot cake', 'cannoli', 'ice cream']
+> 
+> My friend's favorite foods are:
+> ['pizza', 'falafel', 'carrot cake', 'cannoli', 'ice cream']
+> ```
 
 
 
+##### 动手试一试
+
+- [ ] 4-10 切片：选择你在本章编写的一个程序，在末尾添加几行代码，以完成如下任务。
+  - [ ] ·打印消息“The first three items in the list are:”，再使用切片来打印列表的前三个元素。
+  - [ ] ·打印消息“Three items from the middle of the list are:”，再使用切片来打印列表中间的三个元素。
+  - [ ] ·打印消息“The last three items in the list are:”，再使用切片来打印列表末尾的三个元素。
+- [ ] 4-11 你的比萨和我的比萨：在你为完成练习4-1而编写的程序中，创建比萨列表的副本，并将其存储到变量friend_pizzas中，再完成如下任务。
+  - [ ] ·在原来的比萨列表中添加一种比萨。
+  - [ ] ·在列表friend_pizzas中添加另一种比萨。
+  - [ ] ·核实你有两个不同的列表。为此，打印消息“My favorite pizzas are:”，再使用一个for循环来打印第一个列表；打印消息“My friend's favorite pizzas are:”，再使用一个for循环来打印第二个列表。核实新增的比萨被添加到了正确的列表中。
+- [ ] 4-12 使用多个循环：在本节中，为节省篇幅，程序foods.py的每个版本都没有使用for循环来打印列表。请选择一个版本的foods.py，在其中编写两个for循环，将各个食品列表都打印出来。
 
 
 
+### 4.5 元组
+
+#### 4.5.1　定义元组
+
+元组看起来犹如列表，但使用**圆括号**而不是方括号来标识。定义元组后，就可以使用索引来访问其元素，就像访问列表元素一样。
+
+例如，如果有一个大小不应改变的矩形，可将其长度和宽度存储在一个元组中，从而确保它们是不能修改的：
+
+```python
+dimensions = (200, 50)  # 定义元组
+print(dimensions[0])
+print(dimensions[1])
+```
 
 
+
+#### 4.5.2　遍历元组中的所有值
+
+像列表一样，也可以使用for循环来遍历元组中的所有值
+
+
+
+#### 4.5.3　修改元组变量
+
+虽然不能修改元组的元素，但可以给存储元组的变量赋值。因此，如果要修改前述矩形的尺寸，可重新定义整个元组：
+
+```python
+dimensions = (200, 50)
+print("Original dimensions:")
+for dimension in dimensions:
+    print(dimension)
+dimensions = (400, 100)
+print("\nModified dimensions:")
+for dimension in dimensions:
+    print(dimension)
+```
+
+
+
+##### 动手试一试
+
+- [ ] 4-13 自助餐：有一家自助式餐馆，只提供五种简单的食品。请想出五种简单的食品，并将其存储在一个元组中。
+  - [ ] ·使用一个for循环将该餐馆提供的五种食品都打印出来。
+  - [ ] ·尝试修改其中的一个元素，核实Python确实会拒绝你这样做。
+  - [ ] ·餐馆调整了菜单，替换了它提供的其中两种食品。请编写一个这样的代码块：给元组变量赋值，并使用一个for循环将新元组的每个元素都打印出来。
+
+
+
+## 第5章 `if`语句
+
+
+
+### 5.2.2　检查是否相等时不考虑大小写
+
+> 网站采用类似的方式让用户输入的数据符合特定的格式。例如，网站可能使用类似的测试来确保用户名是独一无二的，而并非只是与另一个用户名的大小写不同。用户提交新的用户名时，将把它转换为小写，并与所有既有用户名的小写版本进行比较。执行这种检查时，如果已经有用户名'john'（不管大小写如何），则用户提交用户名'John'时将遭到拒绝。 
+
+在Python中检查是否相等时区分大小写，例如，两个大小写不同的值会被视为不相等：
+
+```bash
+>>>car = 'Audi'
+>>>car == 'audi'
+False
+```
+
+如果大小写很重要，这种行为有其优点。但如果大小写无关紧要，而只想检查变量的值，可将变量的值转换为小写，再进行比较
+
+```
+>>> car = 'Audi'
+>>> car.lower() == 'audi'
+True
+>>> car
+'Audi'
+```
+
+无论值'`Audi`'的大小写如何，上述测试都将返回`True`，因为该测试不区分大小写。函数`lower()`不会修改存储在变量`car`中的值，因此进行这样的比较时不会影响原来的变量
+
+
+
+#### 5.2.3　检查是否不相等
+
+要判断两个值是否不等，可结合使用惊叹号和等号`!=`，其中的惊叹号表示不，在很多编程语言中都如此。
+
+> 你编写的大多数条件表达式都检查两个值是否相等，但有时候检查两个值是否不等的**效率更高**。
+>
+
+
+
+#### 5.2.4　比较数字
+
+
+
+#### 5.2.5　检查多个条件
+
+##### 1.使用and检查多个条件
+
+例如，要检查是否两个人都不小于21岁，可使用下面的测试：
+
+```python
+>>>age_0 = 22
+>>>age_1 = 18
+>>>age_0 >= 21 and age_1 >= 21
+False
+>>>age_1 = 22
+>>>age_0 >= 21 and age_1 >= 21
+True
+```
+
+为改善可读性，可将每个测试都分别放在一对括号内，但并非必须这样做。如果你使用括号，测试将类似于下面这样：
+
+```python
+(age_0 >= 21) and (age_1 >= 21)
+```
+
+##### 2.使用or检查多个条件
+
+
+
+#### 5.2.6　检查特定值是否包含在列表中 `in`
+
+有时候，执行操作前必须检查列表是否包含特定的值。例如，结束用户的注册过程前，可能需要检查他提供的用户名是否已包含在用户名列表中。在地图程序中，可能需要检查用户提交的位置是否包含在已知位置列表中。
+
+
+
+要判断特定的值是否已包含在列表中，可使用关键字`in`。来看你可能为比萨店编写的一些代码；这些代码首先创建一个列表，其中包含用户点的比萨配料，然后检查特定的配料是否包含在该列表中。
+
+```python
+requested_toppings = ['mushrooms', 'onions', 'pineapple']  # 创建列表                    
+
+if 'mushrooms' in requested_toppings:
+    print('true')
+print('mushrooms' in requested_toppings)
+if 'pepperoni' in requested_toppings:
+    print('false')
+```
+
+
+
+#### 5.2.7　检查特定值是否不包含在列表中 `not in`
+
+还有些时候，确定特定的值未包含在列表中很重要；在这种情况下，可使用关键字`not in`。例如，如果有一个列表，其中包含被禁止在论坛上发表评论的用户，就可在允许用户提交评论前检查他是否被禁言：
+
+```python
+banned_users = ['andrew', 'carolina', 'david']  # 可以是被禁言名单
+user = 'marie'  # 发表言论的用户
+if user not in banned_users:  # 判断是否可以发言
+    print(user.title() + ",you can post a response if you wish.")
+```
+
+
+
+#### 5.2.8　布尔表达式
+
+随着你对编程的了解越来越深入，将遇到术语布尔表达式，它不过是条件测试的别名。与条件表达式一样，布尔表达式的结果要么为`True`，要么为`False`。
+
+> 布尔值通常用于记录条件，如游戏是否正在运行，或用户是否可以编辑网站的特定内容：
+>
+> ```python
+> game_active = True
+> can_edit = False
+> ```
+
+##### 动手试一试
+
+- [ ] 5-1 条件测试：编写一系列条件测试；将每个测试以及你对其结果的预测和实际结果都打印出来。你编写的代码应类似于下面这样：
+
+> ```python
+> car = 'subaru'
+> print("Is car == 'subaru'?I predict True.")
+> print(car == 'subaru')
+>    　
+> print("\nIs car == 'audi'?I predict False.")
+> print(car == 'audi')
+> ```
+
+- [ ] ·详细研究实际结果，直到你明白了它为何为True或False。
+- [ ] ·创建至少10个测试，且其中结果分别为True和False的测试都至少有5个。
+- [ ] 5-2 更多的条件测试：你并非只能创建10个测试。如果你想尝试做更多的比较，可再编写一些测试，并将它们加入到conditional_tests.py中。对于下面列出的各种测试，至少编写一个结果为True和False的测试。
+- [ ] ·检查两个字符串相等和不等。
+- [ ] ·使用函数lower()的测试。
+- [ ] ·检查两个数字相等、不等、大于、小于、大于等于和小于等于。
+- [ ] ·使用关键字and和or的测试。
+- [ ] ·测试特定的值是否包含在列表中。
+- [ ] ·测试特定的值是否未包含在列表中。
+
+#### 5.3.1 简单的`if`语句
+
+#### 5.3.2 `if-else`语句
+
+```python
+age = 17
+if age >= 18:
+    print("You are old enough to vote!")
+    print("Have you registered to vote yet?")
+else:
+    print("Sorry,you are too young to vote.")
+    print("Please register to vote as soon as you turn 18!")
+```
+
+
+
+#### 5.3.3　`if-elif-else`结构
+
+```python
+age = 12
+if age < 4:
+    print("Your admission cost is $0.")
+elif age < 18:
+    print("Your admission cost is $5.")
+else:
+    print("Your admission cost is $10.")
+```
+
+
+
+#### 5.3.4　使用多个elif代码块
+
+```python
+age = 12
+if age < 4:
+    price = 0
+elif age < 18:
+    price = 5
+elif age < 65:
+    price = 10
+else:
+    price = 5
+print("Your admission cost is $" + str(price) + ".")
+```
+
+
+
+#### 5.3.5　省略else代码块
+
+Python并不要求if-elif结构后面必须有else代码块。在有些情况下，else代码块很有用；而在其他一些情况下，使用一条elif语句来处理特定的情形更清晰
+
+
+
+#### 5.3.6　测试多个条件
+
+
+
+##### 动手试一试
+
+- [ ] 5-3 外星人颜色#1：假设在游戏中刚射杀了一个外星人，请创建一个名为alien_color的变量，并将其设置为'green'、'yellow'或'red'。
+  - [ ] ·编写一条if语句，检查外星人是否是绿色的；如果是，就打印一条消息，指出玩家获得了5个点。
+  - [ ] ·编写这个程序的两个版本，在一个版本中上述测试通过了，而在另一个版本中未通过（未通过测试时没有输出）。
+
+- [ ] 5-4 外星人颜色#2：像练习5-3那样设置外星人的颜色，并编写一个if-else结构。
+  - [ ] ·如果外星人是绿色的，就打印一条消息，指出玩家因射杀该外星人获得了5个点。
+  - [ ] ·如果外星人不是绿色的，就打印一条消息，指出玩家获得了10个点。
+  - [ ] ·编写这个程序的两个版本，在一个版本中执行if代码块，而在另一个版本中执行else代码块。
+
+- [ ] 5-5 外星人颜色#3：将练习5-4中的if-else结构改为if-elif-else结构。
+  - [ ] ·如果外星人是绿色的，就打印一条消息，指出玩家获得了5个点。
+  - [ ] ·如果外星人是黄色的，就打印一条消息，指出玩家获得了10个点。
+  - [ ] ·如果外星人是红色的，就打印一条消息，指出玩家获得了15个点。
+  - [ ] ·编写这个程序的三个版本，它们分别在外星人为绿色、黄色和红色时打印一条消息。
+
+- [ ] 5-6 人生的不同阶段：设置变量age的值，再编写一个if-elif-else结构，根据age的值判断处于人生的哪个阶段。
+  - [ ] ·如果一个人的年龄小于2岁，就打印一条消息，指出他是婴儿。
+  - [ ] ·如果一个人的年龄为2（含）～4岁，就打印一条消息，指出他正蹒跚学步。
+  - [ ] ·如果一个人的年龄为4（含）～13岁，就打印一条消息，指出他是儿童。
+  - [ ] ·如果一个人的年龄为13（含）～20岁，就打印一条消息，指出他是青少年。
+  - [ ] ·如果一个人的年龄为20（含）～65岁，就打印一条消息，指出他是成年人。
+  - [ ] ·如果一个人的年龄超过65（含）岁，就打印一条消息，指出他是老年人。
+
+- [ ] 5-7 喜欢的水果：创建一个列表，其中包含你喜欢的水果，再编写一系列独立的if语句，检查列表中是否包含特定的水果。
+  - [ ] ·将该列表命名为favorite_fruits，并在其中包含三种水果。
+  - [ ] ·编写5条if语句，每条都检查某种水果是否包含在列表中，如果包含在列表中，就打印一条消息，如“You really like bananas!”。
+
+
+
+### 5.4　使用if语句处理列表
+
+通过结合使用if语句和列表，可完成一些有趣的任务：对列表中特定的值做特殊处理；高效地管理不断变化的情形，如餐馆是否还有特定的食材；证明代码在各种情形下都将按预期那样运行。
+
+
+
+#### 5.4.1　检查特殊元素
+
+#### 5.4.2　确定列表不是空的
+
+```python
+requested_toppings = []
+if requested_toppings:
+    for requested_topping in requested_toppings:
+        print("Adding " + requested_topping + ".")
+    print("\nFinished making your pizza!")
+else:
+    print("Are you sure you want a plain pizza?")
+```
+
+在这里，我们首先创建了一个空列表，其中不包含任何配料（见❶）。在❷处我们进行了简单检查，而不是直接执行for循环。在if语句中将列表名用在条件表达式中时，Python将在列表至少包含一个元素时返回True，并在列表为空时返回False。
+
+
+
+## 第六章 字典
+
+
+
+### 6.1　一个简单的字典
+
+来看一个游戏，其中包含一些外星人，这些外星人的颜色和点数各不相同。下面是一个简单的字典，存储了有关特定外星人的信息：
+
+```python
+alien_0 = {'color': 'green', 'points': 5}
+print(alien_0['color'])
+print(alien_0['points'])
+```
+
+
+
+### 6.2　使用字典
+
+在Python中，字典用放在花括号`{}`中的一系列键—值对表示，如前面的示例所示：
+
+```python
+alien_0 = {'color': 'green', 'points': 5}
+```
+
+
+
+#### 6.2.1　访问字典中的值
+
+要获取与键相关联的值，可依次指定字典名和放在方括号内的键，如下所示：
+
+```python
+alien_0 = {'color': 'green'}
+print(alien_0['color'])
+```
+
+#### 6.2.2　添加键—值对
+
+> Python不关心键—值对的添加顺序，而只关心键和值之间的关联关系。
+
+字典是一种动态结构，可随时在其中添加键—值对。要添加键—值对，可依次指定字典名、用方括号括起的键和相关联的值。
+
+下面在字典`alien_0`中添加两项信息：外星人的x坐标和y坐标，让我们能够在屏幕的特定位置显示该外星人。我们将这个外星人放在屏幕左边缘，且离屏幕上边缘25像素的地方。由于屏幕坐标系的原点通常为左上角，因此要将该外星人放在屏幕左边缘，可将x坐标设置为0；要将该外星人放在离屏幕顶部25像素的地方，可将y坐标设置为25，如下所示：
+
+```python
+alien_0 = {'color': 'green', 'points': 5}
+print(alien_0)
+alien_0['x_position'] = 0
+alien_0['y_position'] = 25
+print(alien_0)
+```
+
+```
+{'color': 'green', 'points': 5}
+{'color': 'green', 'points': 5, 'x_position': 0, 'y_position': 25}
+```
+
+
+
+#### 6.2.3　先创建一个空字典
+
+> 使用字典来存储用户提供的数据或在编写能自动生成大量键—值对的代码时，通常都需要先定义一个空字典。
+
+```python
+alien_0 = {}
+alien_0['color'] = 'green'
+alien_0['points'] = 5
+print(alien_0)
+```
+
+```
+{'color': 'green', 'points': 5}
+```
+
+
+
+#### 6.2.4　修改字典中的值
+
+要修改字典中的值，可依次指定字典名、用方括号括起的键以及与该键相关联的新值。例如，假设随着游戏的进行，需要将一个外星人从绿色改为黄色：
+
+```python
+alien_0 = {'color': 'green'}
+print("The alien is " + alien_0['color'] + ".")
+alien_0['color'] = 'yellow'
+print("The alien is now " + alien_0['color'] + ".")
+```
+
+来看一个更有趣的例子：对一个能够以不同速度移动的外星人的位置进行跟踪。为此，我们将存储该外星人的当前速度，并据此确定该外星人将向右移动多远：
+
+```python
+alien_0 = {'x_position': 0, 'y_position': 25, 'speed': 'medium'}
+print("Original x-position:" + str(alien_0['x_position']))
+# 向右移动外星人
+# 据外星人当前速度决定将其移动多远
+if alien_0['speed'] == 'slow':
+    x_increment = 1
+elif alien_0['speed'] == 'medium':
+    x_increment = 2
+else:
+    # 这个外星人的速度一定很快
+    x_increment = 3
+# 新位置等于老位置加上增量
+alien_0['x_position'] = alien_0['x_position'] + x_increment
+print("New x-position:" + str(alien_0['x_position']))
+
+```
+
+
+
+#### 6.2.5　删除键—值对`del`
+
+对于字典中不再需要的信息，可使用`del`语句将相应的键—值对彻底删除。使用`del`语句时，必须指定字典名和要删除的键。
 
 
 
