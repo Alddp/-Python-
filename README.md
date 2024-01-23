@@ -1358,7 +1358,25 @@ for name in favorite_languages.values():
 
 
 
+## 第十章
 
+### 10.1从文件中读取数据
+
+```python
+with open('pi_digits.txt') as file_object:
+    contents = file_object.read()
+    print(contents)
+```
+
+| 方法          | 使用方法 | 功能                                                         |
+| ------------- | -------- | ------------------------------------------------------------ |
+| `with`        |          |                                                              |
+| `open()`      |          | 打开文件                                                     |
+| `close()`     |          | 关闭文件                                                     |
+| `read()`      |          | 读取这个文件的全部内容，并将其作为一个长长的字符串存储在变量`contents`中 |
+| `readline()`  |          |                                                              |
+| `readlines()` |          | 读取文件的每一行，存到一个列表中                             |
+| `write()`     |          |                                                              |
 
 
 
