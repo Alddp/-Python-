@@ -1,6 +1,7 @@
 import sys
 import pygame
 from bullet import Bullet
+from aline import Aline
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
@@ -47,7 +48,7 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, aline, bullets):
+def update_screen(ai_settings, screen, ship, alines, bullets):
     """更新屏幕上的图像,并切换到新屏幕"""
     # 每次循环前重绘屏幕
     screen.fill(ai_settings.bg_color)
@@ -55,7 +56,7 @@ def update_screen(ai_settings, screen, ship, aline, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
-    aline.blitme()
+    alines.draw(screen)
     # 让最近绘制的屏幕可见
     pygame.display.flip()
 
@@ -68,3 +69,21 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+
+def creat_fleet(ai_settings, screen, alines):
+    """创建外星人群"""
+    # 创建一个外星人,并计算一行可容纳多少个外星人
+    # 外星人间距为外星人宽度
+    aline = Aline(ai_settings, screen)
+    aline_width = aline.rect.width
+    available_space_x = ai_settings.screen_width - 2 * aline_width
+    number_aline_x = int(available_space_x / (2 * aline_width))
+
+    # 创建第一行外星人
+    for aline_number in range(number_aline_x):
+        # 创建一个外星人并将其加入当前行
+        aline = Aline(ai_settings, screen)
+        aline.x = aline_width + 2 * aline_width * aline_number
+        aline.rect.x = aline.x
+        alines.add(aline)
