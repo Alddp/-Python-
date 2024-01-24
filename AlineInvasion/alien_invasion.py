@@ -6,6 +6,7 @@ from pygame.sprite import Group
 from game_stats import GameStats
 from button import Button
 
+
 def run_game():
     # 初始化pygame、设置和屏幕对象
     pygame.init()
