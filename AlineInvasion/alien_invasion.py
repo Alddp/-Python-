@@ -4,7 +4,7 @@ from settings import Settings
 from ship import Ship
 from pygame.sprite import Group
 from game_stats import GameStats
-
+from button import Button
 
 def run_game():
     # 初始化pygame、设置和屏幕对象
@@ -16,6 +16,7 @@ def run_game():
 
     # 框标题
     pygame.display.set_caption("Alien Invasion")
+    play_button = Button(ai_settings, screen, "Play")
     # 创建一个用于存储游戏统计信息的实例
     stats = GameStats(ai_settings)
 
@@ -35,7 +36,7 @@ def run_game():
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         # 刷新屏幕
-        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
+        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
 
 
 run_game()
