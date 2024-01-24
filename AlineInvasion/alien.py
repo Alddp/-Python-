@@ -2,10 +2,10 @@ import pygame
 from pygame.sprite import Sprite
 
 
-class Aline:
+class Alien:
     def __init__(self, ai_settings, screen):
         """初始化外星人并设置其起始位置"""
-        super(Aline, self).__init__()
+        super(Alien, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
 
