@@ -4,7 +4,7 @@
 
 小游戏参考《Python从入门到实践》一书开发
 
-[a.png (2400×1600) (raw.githubusercontent.com)](https://raw.githubusercontent.com/Alddp/-Python-/main/a.png)
+![](https://raw.githubusercontent.com/Alddp/-Python-/main/a.png)
 
 | Source                                                       | 大小  |
 | ------------------------------------------------------------ | ----- |
