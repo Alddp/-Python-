@@ -1,8 +1,10 @@
 import sys
-import pygame
-from bullet import Bullet
-from alien import Alien
 from time import sleep
+
+import pygame
+
+from alien import Alien
+from bullet import Bullet
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
@@ -107,8 +109,10 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
     # 如果外星人群被消灭,就删除现有的子弹,加快游戏节奏,并创建一群外星人
     if collisions:
-        stats.score += ai_settings.alien_points
-        sb.prep_score()
+        for aliens in collisions.values():
+            stats.score += ai_settings.alien_points * len(aliens)
+            sb.prep_score()
+        check_high_score(stats, sb)
     if len(aliens) == 0:
         bullets.empty()
         ai_settings.increase_speed()
@@ -209,3 +213,10 @@ def change_fleet_direction(ai_settings, aliens):
     for alien in aliens.sprites():
         alien.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
+
+
+def check_high_score(stats, sb):
+    """检查是否诞生了新的最高分"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()
