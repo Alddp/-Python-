@@ -4,7 +4,7 @@
 
 小游戏参考《Python从入门到实践》一书开发
 
-<img src="D:\Destok\PixPin_2024-01-25_16-22-58.png" alt="PixPin_2024-01-25_16-22-58" style="zoom:50%;" />
+[a.png (2400×1600) (raw.githubusercontent.com)](https://raw.githubusercontent.com/Alddp/-Python-/main/a.png)
 
 | Source                                                       | 大小  |
 | ------------------------------------------------------------ | ----- |
